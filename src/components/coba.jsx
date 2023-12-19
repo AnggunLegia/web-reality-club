@@ -34,11 +34,11 @@ function CardCoba(){
                     <div>{""}
                         <Card
 
-      className=" "
+    className="  bg-white hover:bg-slate-300 flex flex-col justify-between p-5 rounded-lg items-start "
       href={coba.Link}
     >
       
-     
+      <img src={coba.Asset} className='md:w-[200px] sm:w-[300px] w-[400px]'/>
     <p className=" font-bold tracking-tight text-gray  md:text-2xl sm:text-xl   text-base ">
        {coba.Judul}
       </p>
@@ -46,7 +46,7 @@ function CardCoba(){
        {coba.Menit}
       </p>
      
-     <div className='flex space-x-36'>
+     <div className='flex space-x-24'>
         <button className='w-32 bg-white rounded-lg hover:bg-slate-300 border-2 border-bg-black' 
         onClick={() =>{ deleteCoba(coba.id)}}>
                     hapus

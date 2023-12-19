@@ -4,9 +4,8 @@
 import { addDoc, collection, getDocs } from 'firebase/firestore';
 import { Label, TextInput, Textarea, Button } from 'flowbite-react';
 import { useEffect, useState } from 'react';
-import { db } from '../../../lib/firebase/page';
-import { storage } from '../../../lib/firebase/page';
-import { ref, uploadBytes } from 'firebase/storage';
+import { db, storage} from '../../../lib/firebase/page';
+import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
 import { v4 } from 'uuid';
 import DefaultNavbarAdmin from '@/components/navbaradmin';
 import CardMusik from '@/components/musik';
@@ -22,11 +21,61 @@ export default function InputSizing() {
   const [newLink, setNewLink]=useState("");
   const [newMenit, setNewMenit]=useState("");
   const [newDeskripsi, setNewDeskripsi]=useState("");
-  const [newImageUpload, setNewImageUpload]=useState("");
+  const [newStok, setNewStok]=useState("");
+  const [downloadURL, setDownloadURL] = useState('')
+  const [loading, setLoading] = useState(false)
+  const [img, setImg] = useState('')
   const [coba, setCoba] = useState([]);
  
   
-  
+  const handleSelectedFile = (filee) => {
+    const files = filee.files
+    if (files && files[0].size < 10000000) {
+        setImg(files[0])
+        try {
+            console.log(files)
+            if (files) {
+                setLoading(true)
+                const name = files[0].name
+                const imgRef = ref(storage, `files/${name}`)
+                const uploadTask = uploadBytesResumable(imgRef, files[0])
+
+                uploadTask.on(
+                    'state_changed',
+                    (snapshot) => {
+                        const progress =
+                            (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+                        console.log(progress)
+                    },
+                    (error) => {
+                        alert(error.message)
+                    },
+                    () => {
+
+                        getDownloadURL(uploadTask.snapshot.ref).then((url) => {
+                            //url is download url of file
+                            console.log(url)
+                            setDownloadURL(url)
+                            setLoading(false)
+                        })
+                    },
+                )
+            } else {
+                alert("error")
+            }
+
+
+
+
+        } catch (error) {
+            console.error("An error occured", error);
+        }
+
+        console.log(files[0])
+    } else {
+        alert('File size to large')
+    }
+}
   
 
   const createCoba = async () => {
@@ -35,18 +84,13 @@ export default function InputSizing() {
        Judul:newJudul,
        Menit:newMenit, 
        Link:newLink, 
-       Deskripsi:newDeskripsi
+       Deskripsi:newDeskripsi,
+       Asset: downloadURL,
+       Stok:newStok
       })
       
   } 
-  const upImg = () => {
-    if(newImageUpload == null) return;
-      const imageRef = (storage, `images/${newImageUpload + v4}`);
-      uploadBytes(imageRef, newImageUpload).then(() =>{ 
-        alert("data uploaded")
-      }
-      );
-  }
+ 
   useEffect(()=> {
     const getCoba = async() => {
       const data = await getDocs(cobaCollectionRef);
@@ -123,7 +167,7 @@ export default function InputSizing() {
         </div>
 
         <div>
-        <div className="mb-2 block">
+        <div className="mb-5 block">
           <Label
           
             htmlFor="large"
@@ -135,11 +179,29 @@ export default function InputSizing() {
         <TextInput
         id="comment"
        
-        
+  
         onChange={(event) => {setNewLink(event.target.value);}}
-      />
+        />
         </div>
         
+        <div>
+        <div className="mb-2 block">
+          <Label
+          
+            htmlFor="large"
+            value="Stok Barang"
+            className='text-white text-xl font-bold '
+
+          />
+        </div>
+        <TextInput
+        id="comment"
+        placeholder="cont: 2:32"
+        className='pb-5'
+        onChange={(event) => {setNewStok(event.target.value);}}
+      />
+        </div>
+
         <div className="mb-2 block">
           <Label
           
@@ -149,7 +211,8 @@ export default function InputSizing() {
             />
 
           <input type='file' 
-          onChange={(event) => {setNewImageUpload(event.target.files);}}
+           className='rounded-lg text-white'
+          onChange={(files) => handleSelectedFile(files.target)}
           />
       </div>
 
@@ -158,7 +221,7 @@ export default function InputSizing() {
         Clear
       </Button> 
        <Button type="submit" className='w-[250px]'
-       onClick={upImg}> 
+       onClick={createCoba}> 
         Submit
       </Button>
       </div>

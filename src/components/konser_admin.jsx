@@ -46,7 +46,7 @@ function CardKonser1(){
         onClick={() =>{ deletekonser(konser.id)}}>
                     hapus
         </button>
-        <button className='w-32 bg-white rounded-lg hover:bg-slate-300 '>
+        <button className='w-32 bg-white rounded-lg hover:bg-slate-300 border-2 border-bg-black'>
                     <a href={`/edit_konser?id=${konser.id}`}>edit</a>
         </button>
      </div>
