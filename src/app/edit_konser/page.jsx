@@ -26,6 +26,7 @@ export default function InputSizing() {
   const [konser, setKonser] = useState([]);
   const [newDeskripsi, setNewDeskripsi]=useState("");
   const [newStok, setNewStok]=useState("");
+  const [newHarga, setNewHarga]=useState("");
   const [downloadURL, setDownloadURL] = useState('')
   const [loading, setLoading] = useState(false)
   const [img, setImg] = useState('')
@@ -92,7 +93,7 @@ export default function InputSizing() {
     e.preventDefault();
     const upKonser = doc (db, "konser", id);
     await updateDoc(upKonser, {
-      Tempat:newTempat, Maps:newMaps, Tanggal:newTanggal, Deskripsi:newDeskripsi, Asset:downloadURL, Stok:newStok})
+      Tempat:newTempat, Maps:newMaps, Tanggal:newTanggal, Deskripsi:newDeskripsi, Asset:downloadURL, Stok:newStok, Harga: newHarga})
     alert("success")
   } 
   useEffect(()=> { let data1 = [];
@@ -214,6 +215,25 @@ export default function InputSizing() {
        value={newStok}
         
         onChange={(event) => {setNewStok(event.target.value);}}
+      />
+        </div>
+
+        <div>
+        <div className="mb-2 block">
+          <Label
+          
+            htmlFor="large"
+            value="Harga Tiket"
+            className='text-white text-xl font-bold '
+
+          />
+        </div>
+        <TextInput
+        id="comment"
+        type='number'
+       value={newHarga}
+        
+        onChange={(event) => {setNewHarga(event.target.value);}}
       />
         </div>
 

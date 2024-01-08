@@ -17,6 +17,7 @@ export default function InputSizing() {
   const [newJudul, setNewJudul]=useState("");
   const [newLink, setNewLink]=useState("");
   const [newMenit, setNewMenit]=useState("");
+  const [newLirik, setNewLirik]=useState("");
   const [musik, setMusik] = useState([]);
  
   
@@ -24,7 +25,7 @@ export default function InputSizing() {
   
 
   const createMusik = async () => {
-    await addDoc(musikCollectionRef, {Judul:newJudul, Menit:newMenit, Link:newLink})
+    await addDoc(musikCollectionRef, {Judul:newJudul, Menit:newMenit, Link:newLink, Lirik: newLirik})
   } 
   useEffect(()=> {
     const getMusik = async() => {
@@ -85,6 +86,26 @@ export default function InputSizing() {
 
         <div>
         <div className="mb-2 block">
+          <Label
+          required
+            htmlFor="large"
+            value="Lirik"
+            className='text-white text-xl font-bold '
+
+          />
+        </div>
+        <Textarea
+        id="comment"
+        placeholder="Leave a comment..."
+        
+        onChange={(event) => {setNewLirik(event.target.value);}}
+        rows={10}
+      />
+      </div>
+
+
+        <div>
+        <div className="mb-2  mt-2 block">
           <Label
           
             htmlFor="large"

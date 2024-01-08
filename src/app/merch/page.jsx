@@ -6,6 +6,7 @@ import CardMusik from '@/components/musik'
 import DefaultNavbar from '@/components/navbar'
 import Image from 'next/image'
 export default function Home() {
+  
     return (
       <>
       <div className='bg-bekgron3 w-screen  '>
@@ -16,16 +17,7 @@ export default function Home() {
 
    <div className='pt-16 md:pl-40 sm:pr-5 pb-10 sm:pl-5  pr-10 pl-14 '>
 
-        <div className='md:grid md:grid-cols-4 md:gap-x-4 md:justify-item-center md:mr-32
-        sm:grid sm:grid-cols-2 sm:gap-4 sm:justify-item-center sm:pl-14 grid  gap-y-4 pl-32 justify-item-center  '>
-         {/* <CardWith judul={"IWIWYJ TEE"} desk={"IDR 200.000"} foto={"/images/IWIWYJ.jpg"} w={250} h={100}/>
-         <CardWith judul={"IWIWYJ TEE"} desk={"IDR 200.000"} foto={"/images/IWIWYJ.jpg"} w={250} h={100}/>
-         <CardWith judul={"IWIWYJ TEE"} desk={"IDR 200.000"} foto={"/images/IWIWYJ.jpg"} w={250} h={100}/>
-         <CardWith judul={"IWIWYJ TEE"} desk={"IDR 200.000"} foto={"/images/IWIWYJ.jpg"} w={250} h={100}/>
-         <CardWith judul={"IWIWYJ TEE"} desk={"IDR 200.000"} foto={"/images/IWIWYJ.jpg"} w={250} h={100}/>
-         <CardWith judul={"IWIWYJ TEE"} desk={"IDR 200.000"} foto={"/images/IWIWYJ.jpg"} w={250} h={100}/>
-         <CardWith judul={"IWIWYJ TEE"} desk={"IDR 200.000"} foto={"/images/IWIWYJ.jpg"} w={250} h={100}/>
-         <CardWith judul={"IWIWYJ TEE"} desk={"IDR 200.000"} foto={"/images/IWIWYJ.jpg"} w={250} h={100}/> */}
+        <div >
          <CardMerch/>
         </div>
         </div>

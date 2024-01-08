@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Controls from './control';
-import ProgressBar from './progres';
+import ProgressBar from './upcom_admin';
 
 const AudioPlayer = ({ src }) => {
   return (

@@ -21,6 +21,7 @@ export default function InputSizing() {
   const [newTanggal, setNewTanggal]=useState("");
   const [newDeskripsi, setNewDeskripsi]=useState("");
   const [newStok, setNewStok]=useState("");
+  const [newHarga, setNewHarga]=useState("");
   const [downloadURL, setDownloadURL] = useState('')
   const [loading, setLoading] = useState(false)
   const [img, setImg] = useState('')
@@ -78,8 +79,7 @@ export default function InputSizing() {
         alert('File size to large')
     }
 }
-  
-
+ 
   const createKonser = async () => {
     await addDoc(konserCollectionRef,
       {
@@ -88,7 +88,8 @@ export default function InputSizing() {
         Maps:newMaps,
        Deskripsi:newDeskripsi,
        Asset: downloadURL,
-       Stok: newStok
+       Stok: newStok,
+       Harga: newHarga,
       })
       
   } 
@@ -198,6 +199,25 @@ export default function InputSizing() {
         onChange={(event) => {setNewStok(event.target.value);}}
       />
         </div>
+        <div>
+        <div className="mb-2 block">
+          <Label
+          
+            htmlFor="large"
+            value="Harga Ticket"
+            className='text-white text-xl font-bold '
+
+          />
+        </div>
+        <TextInput
+        id="comment"
+        type='number'
+        placeholder="cont: 2:32"
+        className='pb-5'
+        onChange={(event) => {setNewHarga(event.target.value);}}
+      />
+        </div>
+
         <div className="mb-2 block">
           <Label
           

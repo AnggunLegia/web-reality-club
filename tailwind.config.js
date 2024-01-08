@@ -12,7 +12,7 @@ module.exports = {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
         'bekgron':'url(/images/bmth2.jpeg)',
-        'bekgron2': 'url(/images/real1.jpg)',
+        'bekgron2': 'url(/images/rc20.jpeg)',
         'bekgron3': 'url(/images/bg1.jpeg)',
         'bekgron4': 'url(/images/konser3.jpeg)',
         'bekgron5': 'url(/images/konser3.jpeg)'

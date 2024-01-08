@@ -1,6 +1,6 @@
 'use client'
 import CardArtikel from '@/components/artikel'
-import AudioPlayer1 from '@/components/progres'
+import AudioPlayer1 from '@/components/upcom_admin'
 import AudioPlayer from '@/components/audioplay'
 import Card from '@/components/card'
 import CardWithDecorativeImage from '@/components/card2'
@@ -65,8 +65,8 @@ export default function Home() {
     />
     <CardWithDecorativeImage foto={'/images/konser1.jpeg'} judul={'CONCERT'}
       pindah={"/concert"}  />
-     <CardWithDecorativeImage foto={'/images/album.jpg'} judul={'SONGS'}
-      pindah={"/songs"}
+     <CardWithDecorativeImage foto={'/images/IWIWYJ.jpg'} judul={'MERCH'}
+      pindah={"/merch"}
    
    
     />

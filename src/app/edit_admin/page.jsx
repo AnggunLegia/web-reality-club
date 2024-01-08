@@ -1,30 +1,34 @@
 
 'use client';
 
-import { addDoc, collection, getDocs } from 'firebase/firestore';
+import { addDoc, collection, getDoc, doc, updateDoc } from 'firebase/firestore';
 import { Label, TextInput, Textarea, Button } from 'flowbite-react';
 import { useEffect, useState } from 'react';
-import { db, storage} from '../../../lib/firebase/page';
+import { db, storage } from '../../../lib/firebase/page';
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
-import { v4 } from 'uuid';
 import DefaultNavbarAdmin from '@/components/navbaradmin';
 import CardMusik from '@/components/musik';
 import CardMusik1 from '@/components/musik2';
 import CardCoba from '@/components/coba';
-import CardUp from '@/components/upcom_admin';
+import { useSearchParams } from 'next/navigation';
 
 export default function InputSizing() {
  
+    const searchParams = useSearchParams();
+    const id = searchParams.get("id")
+    
+
   
-  const upcomingCollectionRef = collection(db, "upcoming");
  
- 
+  
   const [downloadURL, setDownloadURL] = useState('')
+  
   const [loading, setLoading] = useState(false)
   const [img, setImg] = useState('')
   const [upcoming, setUpcoming] = useState([]);
  
   
+
   const handleSelectedFile = (filee) => {
     const files = filee.files
     if (files && files[0].size < 10000000) {
@@ -74,22 +78,24 @@ export default function InputSizing() {
     }
 }
   
+    
+  const createCoba = async (e) => {
+    e.preventDefault();
+    const upCoba = doc (db, "upcoming", id);
+    await updateDoc(upCoba, { Asset:downloadURL})
+    alert("success")
+    
 
-  const createCoba = async () => {
-    await addDoc(upcomingCollectionRef,
-      {
-      
-       Asset: downloadURL,
-       
-      })
-      alert("success")
-      
   } 
- 
-  useEffect(()=> {
+  useEffect(()=> { let data1 = [];
+    const upcomingCollectionRef = doc (db, "upcoming", id);
     const getCoba = async() => {
-      const data = await getDocs(upcomingCollectionRef);
-      setUpcoming(data.docs.map((doc) => ({...doc.data(), id: doc.id})));
+      const data = await getDoc(upcomingCollectionRef);
+      data1.push(data.data());
+     
+      setDownloadURL(data1[0].Asset)
+     
+
     };
     getCoba();
   }, []);
@@ -104,8 +110,8 @@ export default function InputSizing() {
         
       <div className='pt-32 pb-10'>
         
-      <div className='bg-inherit hover:bg-teal-500 pt-5 pl-5 pr-5 pb-5 border-4 rounded-lg border-teal-500  w-[600px]   ml-[550px]'  >
-        <p className='text-white text-3xl font-bold pb-3'>Merch</p>
+      <div className='bg-inherit hover:bg-current pt-5 pl-5 pr-5 pb-5 border-4 rounded-lg border-teal-500  w-[600px]   ml-[550px]'  >
+        <p className='text-white text-3xl font-bold pb-3'>coba</p>
         <hr className=' h-4 '></hr>
        
       
@@ -119,25 +125,22 @@ export default function InputSizing() {
 
           <input type='file' 
            className='rounded-lg text-white'
+           
           onChange={(files) => handleSelectedFile(files.target)}
           />
       </div>
-
         <div className='flex space-x-12 pt-10'>
       <Button type="reset"  className='w-[250px]'>
         Clear
       </Button> 
        <Button type="submit" className='w-[250px]'
-       onClick={createCoba}> 
-        Submit
+       onClick={createCoba}  > 
+        <a href='/merch_admin'>Update</a>
       </Button>
       </div>
       </div>
       <hr className='my-10'></hr>
-      <div className=''>
-        <p className='text-center md:text-4xl text-rose-700 md:pb-5 sm:pb-5 font-bold sm:text-2xl text-xl pb-5'>LIST UPCOMING</p>
-        <CardUp/>
-      </div>
+     
         </div>
       </div>
    

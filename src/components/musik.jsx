@@ -25,8 +25,8 @@ function CardMusik(){
                     <div>{""}
                         <Card
 
-      className="  hover:bg-slate-300"
-      href={musik.Link}
+      className="  "
+      
     >
       
      
@@ -36,6 +36,16 @@ function CardMusik(){
       <p className="font-normal text-gray-700 ">
        {musik.Menit}
       </p>
+      <div className='flex md:space-x-60 sm:space-x-32 space-x-72'>
+      <div className='w-20 text-black border-2 border-black rounded-md mt-2 bg-white hover:bg-slate-200 pl-4' 
+      >
+       <a href={`/songs/lirik?id=${musik.id}`}>Lyrics</a> 
+        </div>
+        <div className='w-20 text-black border-2 border-black rounded-md mt-2 bg-white hover:bg-slate-200 pl-3' 
+      >
+       <a href={musik.Link}>Spotify</a> 
+        </div>
+        </div>
     </Card>
     
                     </div>

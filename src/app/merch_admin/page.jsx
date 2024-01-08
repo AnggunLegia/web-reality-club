@@ -88,6 +88,7 @@ export default function InputSizing() {
        Asset: downloadURL,
        Stok:newStok
       })
+      alert("success")
       
   } 
  
@@ -142,6 +143,7 @@ export default function InputSizing() {
         </div>
         <TextInput
         id="comment"
+        type='number'
         placeholder="cont: 2:32"
         className='pb-5'
         onChange={(event) => {setNewMenit(event.target.value);}}

@@ -25,7 +25,7 @@ function CardKonser(){
                     <div>{""}
                         <div
 
-      className="  bg-white hover:bg-slate-300 flex flex-col justify-between p-5 rounded-lg items-start h-32"
+      className="  bg-white hover:bg-slate-300 flex flex-col justify-between p-5 rounded-lg items-start h-36"
       href={konser.Maps}
     >
       
@@ -36,6 +36,9 @@ function CardKonser(){
       <p className="font-normal text-gray-700 ">
        {konser.Tanggal}
       </p>
+      <button className='w-24 text-black border-2 border-black rounded-md mt-2'>
+        buy ticket
+        </button>
     </div>
     
                     </div>

@@ -22,6 +22,7 @@ export default function InputSizing() {
   const [newJudul, setNewJudul]=useState("");
   const [newLink, setNewLink]=useState("");
   const [newMenit, setNewMenit]=useState("");
+  const [newLirik, setNewLirik]=useState("");
   const [musik, setMusik] = useState([]);
  
   
@@ -31,7 +32,7 @@ export default function InputSizing() {
   const createCoba = async (e) => {
     e.preventDefault();
     const upMusik = doc (db, "musik", id);
-    await updateDoc(upMusik, {Judul:newJudul, Link:newLink, Menit:newMenit})
+    await updateDoc(upMusik, {Judul:newJudul, Link:newLink, Menit:newMenit, Lirik:newLirik})
     alert("success")
   } 
   useEffect(()=> { let data1 = [];
@@ -42,6 +43,7 @@ export default function InputSizing() {
       setNewJudul(data1[0].Judul)
       setNewLink(data1[0].Link)
       setNewMenit(data1[0].Menit)
+      setNewLirik(data1[0].Lirik)
 
 
     };
@@ -98,6 +100,25 @@ export default function InputSizing() {
         onChange={(event) => {setNewMenit(event.target.value);}}
       />
         </div>
+
+        <div>
+        <div className="mb-2 block">
+          <Label
+          required
+            htmlFor="large"
+            value="Lirik"
+            className='text-white text-xl font-bold '
+
+          />
+        </div>
+        <Textarea
+        id="comment"
+        placeholder="Leave a comment..."
+        value={newLirik}
+        onChange={(event) => {setNewLirik(event.target.value);}}
+        rows={10}
+      />
+      </div>
 
         <div>
         <div className="mb-2 block">

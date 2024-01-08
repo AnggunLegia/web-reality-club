@@ -44,7 +44,9 @@ function CardMusik1(){
       <p className="font-normal text-gray-700 ">
        {musik.Menit}
       </p>
-     
+      <pre className="font-normal text-black text-lg w-max " >
+     {musik.Lirik}
+     </pre>
      <div className='flex space-x-36'>
         <button className='w-32 bg-white rounded-lg hover:bg-slate-300 border-2 border-bg-black' 
         onClick={()=>{ deleteMusik(musik.id)}} >

@@ -86,6 +86,7 @@ export default function InputSizing() {
     e.preventDefault();
     const upCoba = doc (db, "coba", id);
     await updateDoc(upCoba, {Judul:newJudul, Link:newLink, Menit:newMenit, Deskripsi:newDeskripsi, Asset:downloadURL, Stok:newStok})
+    alert("success")
     
 
   } 
@@ -143,14 +144,15 @@ export default function InputSizing() {
           <Label
           
             htmlFor="large"
-            value="MENIT LAGU"
+            value="Harga"
             className='text-white text-xl font-bold '
 
           />
         </div>
         <TextInput
         id="comment"
-        placeholder="cont: 2:32"
+        placeholder="cont: idr 200"
+        type='number'
         className='pb-5'
         value={newMenit}
         onChange={(event) => {setNewMenit(event.target.value);}}
