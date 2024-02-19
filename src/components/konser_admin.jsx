@@ -30,7 +30,7 @@ function CardKonser1(){
                         <div
 
       className="  bg-white hover:bg-slate-300 flex flex-col justify-between p-5 rounded-lg items-start h-32"
-      href={konser.Maps}
+    //   href={konser.Maps}
     >
       
      

@@ -6,20 +6,40 @@ import { db } from '../../lib/firebase/page';
 import { Card, Footer, Button } from 'flowbite-react';
 import {   BsTrash, BsPen } from 'react-icons/bs';
 import { FooterIcon } from 'flowbite-react/lib/esm/components/Footer/FooterIcon';
+import { useSearchParams } from 'next/navigation';
 
-function CardMusik1(){
-    const [musik, setMusik] = useState([]);
+
+
+    
+   
+
+function CardMusikggh(){
+    const searchParams = useSearchParams();
+    const id = searchParams.get("id")
     const musikCollectionRef = collection(db, "musik");
+ 
+    const [newJudul, setNewJudul]=useState("");
+    const [newLink, setNewLink]=useState("");
+    const [newMenit, setNewMenit]=useState("");
+    const [newLirik, setNewLirik]=useState("");
+    const [musik, setMusik] = useState([]);
 
  const deleteMusik = async (id) => {
         const musikDoc = doc (db, "musik", id);
         await deleteDoc(musikDoc);
     };
     
-    useEffect(()=>{
-        const getMusik= async()=>{
-            const data = await getDocs(musikCollectionRef);
-            setMusik(data.docs.map((doc)=>({...doc.data(), id: doc.id})));
+    useEffect(()=> { let data1 = [];
+        const musikCollectionRef = doc (db, "musik", id);
+        const getMusik = async() => {
+          const data = await getDoc(musikCollectionRef);
+          data1.push(data.data());
+          setNewJudul(data1[0].Judul)
+          setNewLink(data1[0].Link)
+          setNewMenit(data1[0].Menit)
+          setNewLirik(data1[0].Lirik)
+    
+    
         };
         getMusik()
     },[])
@@ -38,14 +58,20 @@ function CardMusik1(){
     >
       
      
-    <p className=" font-bold tracking-tight text-gray  md:text-2xl sm:text-xl   text-base ">
-       {musik.Judul}
+    <p className=" font-bold tracking-tight text-gray  md:text-2xl sm:text-xl   text-base "
+    defaultValue= {newJudul}
+    >
+     
       </p>
-      <p className="font-normal text-gray-700 ">
-       {musik.Menit}
+      <p className="font-normal text-gray-700 "
+       defaultValue= {newMenit}
+      >
+      
       </p>
-     <pre className="font-normal text-black text-lg " >
-     {musik.Lirik}
+     <pre className="font-normal text-black text-lg " 
+      defaultValue= {newLirik}
+     >
+     
      </pre>
      <div className='flex space-x-36'>
         <button className='w-32 bg-white rounded-lg hover:bg-slate-300 border-2 border-bg-black' 
@@ -66,4 +92,4 @@ function CardMusik1(){
         </div>
     )
 }
-export default CardMusik1;
+export default CardMusikggh;

@@ -7,12 +7,7 @@ import { useState, useEffect } from 'react';
 import { db } from '../../lib/firebase/page';
 
 
-const PageA = () => {
-  const router = router();
-}
-const navigateToPageB = () => {
-  router.push('/about'); // Navigasi ke halaman PageB
-};
+
 
 function CardMerch(){
   const [coba, setCoba] = useState([]);
@@ -47,10 +42,10 @@ className='bg-inherit hover:bg-current border-2 flex flex-col justify-between p-
        IDR {coba.Menit}
       </p>
       
-      <button className='w-12 text-white border-2 border-rose-700 rounded-md mt-2' 
-      onClick={navigateToPageB}>
+      <div className='w-12 text-white border-2 border-rose-700 rounded-md mt-2' 
+      >
         buy
-        </button>
+        </div>
     
       
     

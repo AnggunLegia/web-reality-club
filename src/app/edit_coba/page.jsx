@@ -2,6 +2,7 @@
 'use client';
 
 import { addDoc, collection, getDoc, doc, updateDoc } from 'firebase/firestore';
+import { v4 } from 'uuid';
 import { Label, TextInput, Textarea, Button } from 'flowbite-react';
 import { useEffect, useState } from 'react';
 import { db, storage } from '../../../lib/firebase/page';
@@ -11,6 +12,7 @@ import CardMusik from '@/components/musik';
 import CardMusik1 from '@/components/musik2';
 import CardCoba from '@/components/coba';
 import { useSearchParams } from 'next/navigation';
+
 
 export default function InputSizing() {
  
@@ -29,6 +31,7 @@ export default function InputSizing() {
   const [loading, setLoading] = useState(false)
   const [img, setImg] = useState('')
   const [coba, setCoba] = useState([]);
+  const [uuid, setUuid] = useState(v4());
  
   
 
@@ -85,7 +88,7 @@ export default function InputSizing() {
   const createCoba = async (e) => {
     e.preventDefault();
     const upCoba = doc (db, "coba", id);
-    await updateDoc(upCoba, {Judul:newJudul, Link:newLink, Menit:newMenit, Deskripsi:newDeskripsi, Asset:downloadURL, Stok:newStok})
+    await updateDoc(upCoba, {Judul:newJudul, Link:newLink, Menit:newMenit, Deskripsi:newDeskripsi, Asset:downloadURL, Stok:newStok,  id: uuid})
     alert("success")
     
 
@@ -125,13 +128,12 @@ export default function InputSizing() {
         <div className="mb-2 block">
           <Label
             htmlFor="base"
-            value="JUDUL LAGU"
+            value="nama merch"
             className='text-white text-xl font-bold  '
           />
         </div>
-        <TextInput
-          id="base"
-          sizing="md"
+        <Textarea
+          rows={3}
           type="text"
           value={newJudul}
           className='pb-5 '

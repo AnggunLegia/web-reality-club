@@ -26,7 +26,7 @@ export default function InputSizing() {
   const [loading, setLoading] = useState(false)
   const [img, setImg] = useState('')
   const [coba, setCoba] = useState([]);
- 
+  const [uuid, setUuid] = useState(v4());
   
   const handleSelectedFile = (filee) => {
     const files = filee.files
@@ -86,7 +86,8 @@ export default function InputSizing() {
        Link:newLink, 
        Deskripsi:newDeskripsi,
        Asset: downloadURL,
-       Stok:newStok
+       Stok:newStok,
+       id: uuid
       })
       alert("success")
       

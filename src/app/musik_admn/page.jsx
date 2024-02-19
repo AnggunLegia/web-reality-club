@@ -26,6 +26,7 @@ export default function InputSizing() {
 
   const createMusik = async () => {
     await addDoc(musikCollectionRef, {Judul:newJudul, Menit:newMenit, Link:newLink, Lirik: newLirik})
+    alert("success")
   } 
   useEffect(()=> {
     const getMusik = async() => {

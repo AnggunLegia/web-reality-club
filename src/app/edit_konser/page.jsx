@@ -11,6 +11,7 @@ import CardMusik from '@/components/musik';
 import CardMusik1 from '@/components/musik2';
 import CardCoba from '@/components/coba';
 import { useSearchParams } from 'next/navigation';
+import { v4 } from 'uuid';
 
 export default function InputSizing() {
  
@@ -30,7 +31,7 @@ export default function InputSizing() {
   const [downloadURL, setDownloadURL] = useState('')
   const [loading, setLoading] = useState(false)
   const [img, setImg] = useState('')
-  
+  const [uuid, setUuid] = useState(v4());
   
  
 
@@ -93,7 +94,7 @@ export default function InputSizing() {
     e.preventDefault();
     const upKonser = doc (db, "konser", id);
     await updateDoc(upKonser, {
-      Tempat:newTempat, Maps:newMaps, Tanggal:newTanggal, Deskripsi:newDeskripsi, Asset:downloadURL, Stok:newStok, Harga: newHarga})
+      Tempat:newTempat, Maps:newMaps, Tanggal:newTanggal, Deskripsi:newDeskripsi, Asset:downloadURL, Stok:newStok, Harga: newHarga, id: uuid})
     alert("success")
   } 
   useEffect(()=> { let data1 = [];

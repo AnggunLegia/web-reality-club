@@ -3,7 +3,7 @@
 import { collection, deleteDoc, doc, getDocs } from 'firebase/firestore';
 import { useState, useEffect } from 'react';
 import { db } from '../../lib/firebase/page';
-import { Card, Footer, Button } from 'flowbite-react';
+import { Card, Footer, Button, Alert } from 'flowbite-react';
 import {   BsTrash, BsPen } from 'react-icons/bs';
 import { FooterIcon } from 'flowbite-react/lib/esm/components/Footer/FooterIcon';
 
@@ -14,6 +14,7 @@ function CardMusik1(){
  const deleteMusik = async (id) => {
         const musikDoc = doc (db, "musik", id);
         await deleteDoc(musikDoc);
+        alert("success");
     };
     
     useEffect(()=>{
@@ -34,7 +35,7 @@ function CardMusik1(){
                         <Card
 
       className=" "
-      href={musik.Link}
+    //   href={musik.Link}
     >
       
      

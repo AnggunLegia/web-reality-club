@@ -9,6 +9,7 @@ import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
 import DefaultNavbarAdmin from '@/components/navbaradmin';
 import CardKonser from '@/components/konser';
 import CardKonser1 from '@/components/konser_admin';
+import { v4 } from 'uuid';
 
 export default function InputSizing() {
  
@@ -25,7 +26,7 @@ export default function InputSizing() {
   const [downloadURL, setDownloadURL] = useState('')
   const [loading, setLoading] = useState(false)
   const [img, setImg] = useState('')
-  
+  const [uuid, setUuid] = useState(v4());
   
  
 
@@ -90,7 +91,9 @@ export default function InputSizing() {
        Asset: downloadURL,
        Stok: newStok,
        Harga: newHarga,
+       id: uuid
       })
+      alert("success");
       
   } 
   useEffect(()=> {
