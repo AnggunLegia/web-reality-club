@@ -66,6 +66,7 @@ export default function InputSizing() {
                             console.log(url)
                             setDownloadURL(url)
                             setLoading(false)
+                            
                         })
                     },
                 )
@@ -136,9 +137,8 @@ export default function InputSizing() {
             className='text-white text-xl font-bold  '
           />
         </div>
-        <TextInput
-          id="base"
-          sizing="md"
+        <Textarea
+          rows={3}
           type="text"
           value={newTempat}
           className='pb-5 '

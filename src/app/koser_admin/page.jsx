@@ -82,8 +82,10 @@ export default function InputSizing() {
 }
  
   const createKonser = async () => {
+    try {
     await addDoc(konserCollectionRef,
       {
+        
         Tempat:newTempat, 
         Tanggal:newTanggal, 
         Maps:newMaps,
@@ -94,7 +96,11 @@ export default function InputSizing() {
        id: uuid
       })
       alert("success");
-      
+     } catch (error) {
+      console.error("Error adding document: ", error);
+      alert("Failed to add document");
+  }
+
   } 
   useEffect(()=> {
     const getKonser = async() => {
